@@ -122,10 +122,12 @@ class AddBoneChain(Operator):
             bone.tail = space @ (C + Vector((L, 0, 0)) * (i + 1))
             if i > 0:
                 bone.parent = arm.edit_bones.get(self.get_bone_name(i - 1))
+            bone.use_deform = True
 
             locator = arm.edit_bones.new(self.get_locator_name(i))
             locator.head = space @ Vector((0, 0, 0))
             locator.tail = space @ Vector((L * 0.5, 0, 0))
+            locator.use_deform = False
 
         # Setup pose bone constraints
         edit_mode_out()
